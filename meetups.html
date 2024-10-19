@@ -11,8 +11,8 @@
         }
         th, td {
             border: 1px solid black;
-            padding: 8px;
-            text-align: left;
+            padding: 5px;
+            text-align: center;
         }
         th {
             background-color: #f2f2f2;
@@ -22,8 +22,12 @@
 <body>
     <h1>앞으로 열릴 개발자 행사 목록</h1>
     <div id="status"></div>
+    <br> 최근에 열린, 그리고 앞으로 열릴 개발자 행사, 밋업, 해커톤 등 행사 목록입니다.<br><br>
+    => <a href="https://forms.gle/WJJWhQ8YKmTEXJiu5">직접 등록</a> <= 을 클릭해서 행사를 등록할 수 있습니다.<br><br>
     <div id="sheet-data"></div>
-
+    <br>
+    <br> 직접 개최하시거나 위 목록에 없는 행사가 있다면 꼭 등록해주세요
+    <br> 이 페이지에 관한 문의는 ykhl1itj@gmail.com<br>
     <script>
     
     function createEventTable(rows) {
@@ -92,11 +96,11 @@
 
         const [, year, month, day, ampm, hours, minutes, seconds] = match;
 
-        // 월과 일이 한 자리 수인 경우 앞에 0을 붙입니다.
+        // 월과 일이 한 자리 수인 경우 앞에 0 붙이기
         const formattedMonth = month.padStart(2, '0');
         const formattedDay = day.padStart(2, '0');
 
-        // 시간을 24시간 형식으로 변환합니다.
+        // 시간을 24시간 형식으로 변환
         let formattedHours = parseInt(hours);
         if (ampm === '오후' && formattedHours !== 12) {
             formattedHours += 12;
@@ -110,7 +114,7 @@
         return formattedDate;
     }
 
-    // Google Sheets API 키와 스프레드시트 ID를 설정합니다.
+    // Google Sheets API 키와 스프레드시트 ID를 설정
     const API_KEY = 'AIzaSyDfsMoc96T4IDv1N7-ccI2mU353_ANqmbU';
     const SPREADSHEET_ID = '1KMB44o1X3UrHKQarL-C6gE75-_jgobz8-ySizAX2s8U';
     const RANGE = 'B:H'; // B열부터 H열까지의 데이터를 가져옵니다.
