@@ -1,0 +1,374 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --c0:#020c18;--c1:#041428;--c2:#061e3a;--c3:#0a2d55;
+    --acc:#00c8ff;--acc2:#0af5c0;--acc3:#5b8fff;
+    --text:#e8f4ff;--muted:#7aaac8;--border:rgba(0,200,255,0.15);
+    --font-h:'Syne',sans-serif;--font-b:'DM Sans',sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--c0);color:var(--text);font-family:var(--font-b);font-size:15px;line-height:1.7;min-height:100vh;overflow-x:hidden}
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:rgba(2,12,24,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-family:var(--font-h);font-weight:800;font-size:1.2rem;letter-spacing:-0.02em;color:var(--text)}
+  .logo span{color:var(--acc)}
+  .nav-links{display:flex;gap:2rem;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s;cursor:pointer}
+  .nav-links a:hover{color:var(--acc)}
+  .nav-cta{background:var(--acc);color:#000;padding:8px 18px;border-radius:4px;font-size:12px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;border:none;transition:all 0.2s}
+  .nav-cta:hover{background:var(--acc2)}
+  /* HERO */
+  #home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:6rem 2rem 4rem;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(0,120,200,0.12) 0%,transparent 70%)}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.5}
+  .hero-orb{position:absolute;top:15%;right:10%;width:320px;height:320px;border-radius:50%;border:1px solid rgba(0,200,255,0.2);animation:pulse 4s ease-in-out infinite}
+  .hero-orb::before{content:'';position:absolute;inset:20px;border-radius:50%;border:1px solid rgba(0,200,255,0.15);animation:pulse 4s ease-in-out infinite 0.5s}
+  .hero-orb::after{content:'';position:absolute;inset:40px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,255,0.08),transparent);border:1px solid rgba(0,200,255,0.1);animation:pulse 4s ease-in-out infinite 1s}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.04);opacity:0.7}}
+  .hero-content{position:relative;max-width:680px}
+  .hero-badge{display:inline-block;padding:5px 14px;border:1px solid rgba(0,200,255,0.4);border-radius:2px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--acc);margin-bottom:1.5rem}
+  h1{font-family:var(--font-h);font-weight:800;font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.5rem}
+  h1 em{color:var(--acc);font-style:normal}
+  .hero-sub{font-size:1.05rem;color:var(--muted);max-width:520px;margin-bottom:2.5rem;font-weight:300}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-primary{background:var(--acc);color:#000;padding:12px 28px;border-radius:3px;font-weight:500;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;border:none;transition:all 0.2s}
+  .btn-primary:hover{background:var(--acc2);transform:translateY(-1px)}
+  .btn-outline{background:transparent;color:var(--acc);padding:12px 28px;border-radius:3px;font-weight:500;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(0,200,255,0.4);transition:all 0.2s}
+  .btn-outline:hover{background:rgba(0,200,255,0.08);border-color:var(--acc)}
+  .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--border);position:relative}
+  .stat-num{font-family:var(--font-h);font-size:2rem;font-weight:700;color:var(--acc);line-height:1}
+  .stat-label{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:0.05em;text-transform:uppercase}
+  /* SECTION */
+  section{padding:5rem 2rem}
+  .section-inner{max-width:960px;margin:0 auto}
+  .section-tag{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--acc);margin-bottom:0.75rem}
+  h2{font-family:var(--font-h);font-weight:700;font-size:clamp(1.8rem,3vw,2.5rem);line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.25rem}
+  .section-lead{color:var(--muted);max-width:560px;font-size:1rem;margin-bottom:3rem;font-weight:300}
+  /* TECH PAGE */
+  #technology{background:var(--c1)}
+  .tech-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:2.5rem;width:fit-content}
+  .tech-tab{padding:10px 20px;background:transparent;color:var(--muted);border:none;font-family:var(--font-b);font-size:13px;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;border-right:1px solid var(--border)}
+  .tech-tab:last-child{border-right:none}
+  .tech-tab.active{background:var(--acc);color:#000}
+  .tech-panel{display:none}
+  .tech-panel.active{display:block}
+  .tech-diagram{background:var(--c2);border:1px solid var(--border);border-radius:8px;padding:2rem;margin-bottom:2rem;position:relative;overflow:hidden}
+  .diagram-flow{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+  .dbox{background:var(--c3);border:1px solid rgba(0,200,255,0.25);border-radius:6px;padding:1rem 1.25rem;text-align:center;flex:1;min-width:120px}
+  .dbox-icon{font-size:22px;margin-bottom:6px;line-height:1}
+  .dbox-title{font-family:var(--font-h);font-size:12px;font-weight:700;color:var(--acc);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}
+  .dbox-desc{font-size:11px;color:var(--muted)}
+  .darrow{color:var(--acc);font-size:1.2rem;padding:0 8px;flex-shrink:0}
+  .tech-specs{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.5rem}
+  .spec-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--border)}
+  .spec-key{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
+  .spec-val{font-family:var(--font-h);font-size:14px;font-weight:700;color:var(--acc)}
+  /* MISSION */
+  #mission{background:var(--c0)}
+  .sdg-card{background:var(--c2);border:1px solid var(--border);border-radius:8px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:1.5rem}
+  .sdg-num{font-family:var(--font-h);font-size:3rem;font-weight:800;color:var(--acc);line-height:1;flex-shrink:0;opacity:0.8}
+  /* NEWSLETTER TILES */
+  #news{background:var(--c1)}
+  .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .news-tile{background:var(--c1);padding:1.75rem;transition:background 0.2s;cursor:pointer;position:relative}
+  .news-tile:hover{background:var(--c2)}
+  .news-tile.featured{grid-column:span 2;border-bottom:1px solid var(--border)}
+  .tile-cat{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--acc);margin-bottom:0.75rem;font-weight:500}
+  .tile-title{font-family:var(--font-h);font-size:1rem;font-weight:700;line-height:1.3;margin-bottom:0.6rem;color:var(--text)}
+  .tile-title.lg{font-size:1.3rem}
+  .tile-excerpt{font-size:12px;color:var(--muted);font-weight:300;line-height:1.6;margin-bottom:1rem}
+  .tile-meta{display:flex;align-items:center;justify-content:space-between}
+  .tile-date{font-size:11px;color:var(--muted);letter-spacing:0.05em}
+  .tile-tag{font-size:10px;padding:3px 8px;border-radius:2px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase}
+  .tag-tech{background:rgba(0,200,255,0.12);color:var(--acc)}
+  .tag-sdg{background:rgba(10,245,192,0.12);color:var(--acc2)}
+  .tag-funding{background:rgba(91,143,255,0.12);color:var(--acc3)}
+  .tag-event{background:rgba(255,180,0,0.12);color:#ffb400}
+  .tile-divider{width:30px;height:2px;background:var(--acc);margin-bottom:1rem;opacity:0.5}
+  /* CONTACT */
+  #contact{background:var(--c0);text-align:center}
+  .contact-box{background:var(--c2);border:1px solid var(--border);border-radius:10px;padding:3rem;max-width:520px;margin:0 auto}
+  .contact-email{font-family:var(--font-h);font-size:1.1rem;color:var(--acc);margin:1.5rem 0}
+  .contact-addr{font-size:12px;color:var(--muted);line-height:1.8}
+  /* FOOTER */
+  footer{padding:2rem;text-align:center;border-top:1px solid var(--border);font-size:11px;color:var(--muted);letter-spacing:0.05em}
+  /* PLASMA ANIMATION */
+  .plasma-ring{position:absolute;right:2rem;top:50%;transform:translateY(-50%);width:280px;height:280px;display:flex;align-items:center;justify-content:center;pointer-events:none}
+  .ring{position:absolute;border-radius:50%;border:1px solid}
+  .r1{width:100%;height:100%;border-color:rgba(0,200,255,0.15);animation:spinA 12s linear infinite}
+  .r2{width:72%;height:72%;border-color:rgba(10,245,192,0.2);animation:spinB 8s linear infinite}
+  .r3{width:44%;height:44%;border-color:rgba(0,200,255,0.3);animation:spinA 5s linear infinite}
+  .r-core{width:20%;height:20%;background:radial-gradient(circle,var(--acc),transparent);border-radius:50%;animation:glow 2s ease-in-out infinite alternate}
+  @keyframes spinA{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  @keyframes spinB{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+  @keyframes glow{0%{opacity:0.4;transform:scale(0.8)}100%{opacity:1;transform:scale(1.2)}}
+</style>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Aqua<span>Plas</span></div>
+  <div class="nav-links">
+    <a onclick="scrollTo('home')">Home</a>
+    <a onclick="scrollTo('technology')">Technology</a>
+    <a onclick="scrollTo('mission')">Mission</a>
+    <a onclick="scrollTo('news')">News</a>
+    <a onclick="scrollTo('contact')">Contact</a>
+    <button class="nav-cta" onclick="scrollTo('contact')">Get Demo</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div style="max-width:960px;margin:0 auto;width:100%;position:relative">
+    <div class="hero-content">
+      <div class="hero-badge">UN SDG 6 · Clean Water for All</div>
+      <h1>공기에서<br><em>마실 수 있는 물</em>을<br>즉시 만들다</h1>
+      <p class="hero-sub">AquaPlas의 플라즈마 수분 응축 기술은 대기 중 수증기를 초고속으로 음용 가능한 순수한 물로 변환합니다. 전력만 있으면, 어디서든.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="scrollTo('technology')">기술 알아보기</button>
+        <button class="btn-outline" onclick="scrollTo('contact')">데모 신청</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">98.4%</div><div class="stat-label">음용수 순도</div></div>
+        <div><div class="stat-num">40×</div><div class="stat-label">기존 대비 속도</div></div>
+        <div><div class="stat-num">15%</div><div class="stat-label">대기 습도에서 작동</div></div>
+      </div>
+    </div>
+    <div class="plasma-ring" style="right:-1rem;top:55%;display:none" id="heroOrb">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+      <div class="r-core"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY SUB-PAGE -->
+<section id="technology">
+  <div class="section-inner">
+    <div class="section-tag">Core Technology</div>
+    <h2>플라즈마 수분 응축 시스템</h2>
+    <p class="section-lead">대기 중 수분을 플라즈마 전기장을 이용해 나노 수준에서 포집·응축·정화하는 AquaPlas 고유 기술 시스템.</p>
+
+    <div class="tech-tabs">
+      <button class="tech-tab active" onclick="showTab('principle')">작동 원리</button>
+      <button class="tech-tab" onclick="showTab('spec')">제품 사양</button>
+      <button class="tech-tab" onclick="showTab('safety')">안전 · 인증</button>
+    </div>
+
+    <div id="panel-principle" class="tech-panel active">
+      <div class="tech-diagram">
+        <div class="diagram-flow">
+          <div class="dbox">
+            <div class="dbox-icon">🌬️</div>
+            <div class="dbox-title">대기 흡입</div>
+            <div class="dbox-desc">습도 15% 이상<br>공기 유입</div>
+          </div>
+          <div class="darrow">→</div>
+          <div class="dbox">
+            <div class="dbox-icon">⚡</div>
+            <div class="dbox-title">플라즈마 필드</div>
+            <div class="dbox-desc">이온화·분자 분리<br>수분 클러스터링</div>
+          </div>
+          <div class="darrow">→</div>
+          <div class="dbox">
+            <div class="dbox-icon">❄️</div>
+            <div class="dbox-title">초고속 응축</div>
+            <div class="dbox-desc">나노 채널<br>열전 응축 모듈</div>
+          </div>
+          <div class="darrow">→</div>
+          <div class="dbox">
+            <div class="dbox-icon">🔬</div>
+            <div class="dbox-title">다중 정화</div>
+            <div class="dbox-desc">UV·나노필터<br>미네랄 조정</div>
+          </div>
+          <div class="darrow">→</div>
+          <div class="dbox">
+            <div class="dbox-icon">💧</div>
+            <div class="dbox-title">음용수 출력</div>
+            <div class="dbox-desc">WHO 기준 충족<br>순수 음용수</div>
+          </div>
+        </div>
+      </div>
+      <p style="color:var(--muted);font-size:0.92rem;font-weight:300;line-height:1.8">플라즈마 전기장은 수증기 분자(H₂O)의 수소결합을 순간적으로 약화시켜 군집 형성을 촉진합니다. 이렇게 클러스터링된 수분 입자는 기존 응축 방식 대비 최대 40배 빠른 속도로 액화되며, 후단의 다중 정화 단계를 거쳐 WHO 음용수 기준을 완전히 충족하는 물로 출력됩니다.</p>
+    </div>
+
+    <div id="panel-spec" class="tech-panel">
+      <div class="tech-specs">
+        <div>
+          <div class="spec-row"><span class="spec-key">모델명</span><span class="spec-val">APX-3000</span></div>
+          <div class="spec-row"><span class="spec-key">일일 생산량</span><span class="spec-val">최대 3,000 L/day</span></div>
+          <div class="spec-row"><span class="spec-key">최저 작동 습도</span><span class="spec-val">15% RH</span></div>
+          <div class="spec-row"><span class="spec-key">전력 소비</span><span class="spec-val">1.2 kWh/L</span></div>
+          <div class="spec-row"><span class="spec-key">작동 온도</span><span class="spec-val">–10°C ~ 55°C</span></div>
+        </div>
+        <div>
+          <div class="spec-row"><span class="spec-key">정화 방식</span><span class="spec-val">UV + 나노필터 5단</span></div>
+          <div class="spec-row"><span class="spec-key">음용수 순도</span><span class="spec-val">TDS &lt;10 ppm</span></div>
+          <div class="spec-row"><span class="spec-key">플라즈마 주파수</span><span class="spec-val">2.45 GHz</span></div>
+          <div class="spec-row"><span class="spec-key">연결 옵션</span><span class="spec-val">태양광 / 계통 겸용</span></div>
+          <div class="spec-row"><span class="spec-key">크기 (L×W×H)</span><span class="spec-val">120 × 80 × 200 cm</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="panel-safety" class="tech-panel">
+      <div class="tech-diagram">
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.25rem">AquaPlas 플라즈마 시스템은 국제 안전 기준에 따른 완전 차폐 설계로 운용자와 환경에 대한 전자기 노출을 원천 차단합니다.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem">
+          <div style="text-align:center;padding:1rem;background:var(--c3);border-radius:6px;border:1px solid var(--border)">
+            <div style="color:var(--acc);font-family:var(--font-h);font-weight:700;font-size:1rem;margin-bottom:4px">WHO</div>
+            <div style="font-size:11px;color:var(--muted)">음용수 품질 기준 충족</div>
+          </div>
+          <div style="text-align:center;padding:1rem;background:var(--c3);border-radius:6px;border:1px solid var(--border)">
+            <div style="color:var(--acc);font-family:var(--font-h);font-weight:700;font-size:1rem;margin-bottom:4px">CE · FCC</div>
+            <div style="font-size:11px;color:var(--muted)">전자파 적합성 인증</div>
+          </div>
+          <div style="text-align:center;padding:1rem;background:var(--c3);border-radius:6px;border:1px solid var(--border)">
+            <div style="color:var(--acc);font-family:var(--font-h);font-weight:700;font-size:1rem;margin-bottom:4px">ISO 9001</div>
+            <div style="font-size:11px;color:var(--muted)">제조 품질 관리 인증</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="section-inner">
+    <div class="section-tag">UN SDG 6 · Our Mission</div>
+    <h2>깨끗한 물,<br>모두의 권리입니다</h2>
+    <p class="section-lead">전 세계 22억 명이 안전한 식수를 갖지 못하고 있습니다. AquaPlas는 플라즈마 기술로 물 접근의 지리적·경제적 장벽을 허뭅니다.</p>
+
+    <div class="sdg-card">
+      <div class="sdg-num">6</div>
+      <div>
+        <div style="font-family:var(--font-h);font-weight:700;font-size:1.1rem;margin-bottom:0.5rem">깨끗한 물과 위생 (Clean Water &amp; Sanitation)</div>
+        <p style="color:var(--muted);font-size:0.9rem;font-weight:300">AquaPlas는 UN SDG 6번 목표 달성의 핵심 기술 파트너로서, 사막·고산·도서 지역 등 수자원 접근이 불가능한 극한 환경에서도 즉시 음용 가능한 물을 공급합니다. 2030년까지 500만 명 이상의 물 접근성을 개선하는 것을 목표로 합니다.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem">
+      <div style="background:var(--c2);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <div style="color:var(--acc2);font-size:1.8rem;font-family:var(--font-h);font-weight:800;margin-bottom:4px">22억</div>
+        <div style="font-size:12px;color:var(--muted)">안전한 식수가 없는 인구</div>
+      </div>
+      <div style="background:var(--c2);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <div style="color:var(--acc2);font-size:1.8rem;font-family:var(--font-h);font-weight:800;margin-bottom:4px">500만</div>
+        <div style="font-size:12px;color:var(--muted)">2030년 목표 수혜 인구</div>
+      </div>
+      <div style="background:var(--c2);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <div style="color:var(--acc2);font-size:1.8rem;font-family:var(--font-h);font-weight:800;margin-bottom:4px">60+</div>
+        <div style="font-size:12px;color:var(--muted)">파일럿 배포 국가 (예정)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS TILES -->
+<section id="news">
+  <div class="section-inner">
+    <div class="section-tag">AquaPlas Newsletter</div>
+    <h2>최신 소식</h2>
+    <p class="section-lead">플라즈마 수분 기술과 글로벌 물 위기 해결을 위한 AquaPlas의 최신 업데이트를 확인하세요.</p>
+
+    <div class="news-grid">
+      <!-- Featured -->
+      <div class="news-tile featured" style="grid-column:span 2">
+        <div class="tile-cat">Breaking News</div>
+        <div class="tile-divider"></div>
+        <div class="tile-title lg">AquaPlas APX-3000, 사하라 사막 파일럿 테스트 성공적 완료 — 일 2,800L 생산 확인</div>
+        <div class="tile-excerpt">최저 습도 17% RH 환경에서 72시간 연속 가동 시험을 성공적으로 마쳤습니다. 현지 WHO 기준 음용수 품질 검증 결과 TDS 7.2 ppm을 기록했으며, 현장 운영팀은 "예상을 뛰어넘는 결과"라고 평가했습니다.</div>
+        <div class="tile-meta"><span class="tile-date">2025년 11월 14일</span><span class="tile-tag tag-sdg">SDG 6 임팩트</span></div>
+      </div>
+
+      <div class="news-tile">
+        <div class="tile-cat">Funding</div>
+        <div class="tile-divider"></div>
+        <div class="tile-title">시리즈 B 라운드 $85M 클로징, UNDP와 공동 투자</div>
+        <div class="tile-excerpt">기후테크 전문 VC 블루호라이즌과 UNDP가 공동 주도한 이번 투자로 2026년 양산 로드맵을 확정합니다.</div>
+        <div class="tile-meta"><span class="tile-date">2025년 10월 28일</span><span class="tile-tag tag-funding">투자</span></div>
+      </div>
+
+      <div class="news-tile">
+        <div class="tile-cat">Technology</div>
+        <div class="tile-divider"></div>
+        <div class="tile-title">2세대 플라즈마 코어 특허 등록 완료 — 에너지 소비 31% 절감</div>
+        <div class="tile-excerpt">새로운 펄스 변조 방식을 적용한 2세대 플라즈마 모듈은 기존 대비 전력 소비를 대폭 줄이면서 응축 속도는 유지합니다.</div>
+        <div class="tile-meta"><span class="tile-date">2025년 9월 5일</span><span class="tile-tag tag-tech">기술</span></div>
+      </div>
+
+      <div class="news-tile">
+        <div class="tile-cat">Partnership</div>
+        <div class="tile-divider"></div>
+        <div class="tile-title">에티오피아 정부와 1만 대 보급 MOU 체결</div>
+        <div class="tile-excerpt">에티오피아 물부 및 UNICEF와 협력하여 오로미아 주 건조 지역 농촌 공동체에 APX-1000 보급 계획을 확정했습니다.</div>
+        <div class="tile-meta"><span class="tile-date">2025년 8월 19일</span><span class="tile-tag tag-sdg">파트너십</span></div>
+      </div>
+
+      <div class="news-tile">
+        <div class="tile-cat">Event</div>
+        <div class="tile-divider"></div>
+        <div class="tile-title">CES 2026 혁신상 수상 — 지속가능기술 부문</div>
+        <div class="tile-excerpt">라스베이거스 CES 2026에서 AquaPlas APX-3000이 지속가능기술 혁신상을 수상했습니다. 1월 부스 방문을 환영합니다.</div>
+        <div class="tile-meta"><span class="tile-date">2025년 12월 2일</span><span class="tile-tag tag-event">이벤트</span></div>
+      </div>
+
+      <div class="news-tile">
+        <div class="tile-cat">Research</div>
+        <div class="tile-divider"></div>
+        <div class="tile-title">Nature Water 게재 — 플라즈마 응축 메커니즘 최초 규명</div>
+        <div class="tile-excerpt">KAIST 공동 연구팀이 Nature Water에 발표한 논문에서 플라즈마 전기장이 수소결합에 미치는 영향이 처음으로 정량적으로 규명되었습니다.</div>
+        <div class="tile-meta"><span class="tile-date">2025년 7월 30일</span><span class="tile-tag tag-tech">연구</span></div>
+      </div>
+
+      <div class="news-tile">
+        <div class="tile-cat">Product</div>
+        <div class="tile-divider"></div>
+        <div class="tile-title">가정용 소형 모델 APX-Home 출시 예고 — 2026년 Q2</div>
+        <div class="tile-excerpt">일일 50L 생산 가능한 가정용 콤팩트 모델이 개발 완료 단계에 들어섰습니다. 사전 등록을 시작합니다.</div>
+        <div class="tile-meta"><span class="tile-date">2025년 11월 30일</span><span class="tile-tag tag-funding">제품</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-tag">Contact Us</div>
+    <div class="contact-box">
+      <h2 style="margin-bottom:0.5rem">함께 만들어 가겠습니다</h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem">파트너십·데모·투자 문의는 언제든지 연락 주세요.</p>
+      <div class="contact-email">contact@aquaplas.earth</div>
+      <div class="contact-addr">
+        AquaPlas Technologies Inc.<br>
+        대한민국 서울특별시 강남구 테헤란로 521, AquaPlas 타워 18층<br>
+        우편번호 06168<br><br>
+        <span style="color:var(--acc)">+82-2-7700-4200</span>
+      </div>
+      <button class="btn-primary" style="margin-top:2rem;width:100%">데모 신청하기</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 AquaPlas Technologies Inc. · All rights reserved · UN SDG 6 파트너 · aquaplas.earth
+</footer>
+
+<script>
+function scrollTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+function showTab(name){
+  document.querySelectorAll('.tech-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tech-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
